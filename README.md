@@ -53,11 +53,23 @@ The widget is a Tauri v2 desktop app styled as a MegaMan Battle Network "PET" de
 
 The PET widget shows your Navi's current sprite, dialogue, activity feed, HP, stats, and Battle Chips. The sprite panel changes state in real time as you code.
 
+### The PET device
+
+<p align="center">
+  <img src="images/hero.png" alt="PET widget showing Vex.EXE" width="320">
+  <br><i>The PET widget — sprite, dialogue, activity feed, HP bar, stats, and Battle Chips in one floating pane.</i>
+</p>
+
+### Animation states
+
+Each Navi has 10 animation states × 6 frames. Here are peak frames from four of them:
+
 <table>
   <tr>
-    <td align="center"><img src="images/hero.png" alt="Idle" width="280"><br><i>Idle — resting between tool calls</i></td>
-    <td align="center"><img src="images/state-jack-in.png" alt="Jack In" width="280"><br><i>Jack-in — session start, thrusters firing</i></td>
-    <td align="center"><img src="images/state-attack.png" alt="Attack Slash" width="280"><br><i>Attack slash — in combat with a virus</i></td>
+    <td align="center"><img src="images/state-jack-in.png" alt="Jack in" width="200"><br><b>Jack-in</b><br><i>session start</i></td>
+    <td align="center"><img src="images/state-battle.png" alt="Battle stance" width="200"><br><b>Battle stance</b><br><i>virus detected</i></td>
+    <td align="center"><img src="images/state-attack.png" alt="Attack slash" width="200"><br><b>Attack slash</b><br><i>mid-swing on a virus</i></td>
+    <td align="center"><img src="images/state-victory.png" alt="Victory" width="200"><br><b>Victory</b><br><i>virus defeated</i></td>
   </tr>
 </table>
 
