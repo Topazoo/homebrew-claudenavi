@@ -1,8 +1,8 @@
 class Claudenavi < Formula
   desc "MegaMan Battle Network-inspired NetNavi companion for Claude Code"
   homepage "https://github.com/Topazoo/claudenavi"
-  url "https://registry.npmjs.org/claudenavi/-/claudenavi-0.1.0.tgz"
-  sha256 "PLACEHOLDER"
+  url "https://registry.npmjs.org/claudenavi/-/claudenavi-${VERSION}.tgz"
+  sha256 "${NPM_SHA}"
   license "MIT"
 
   depends_on "node@22"
@@ -10,16 +10,16 @@ class Claudenavi < Formula
 
   on_macos do
     resource "widget" do
-      url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.1.0/ClaudeNavi-macos-universal.app.tar.gz"
-      sha256 "PLACEHOLDER"
+      url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v${VERSION}/ClaudeNavi-macos-universal.app.tar.gz"
+      sha256 "${MACOS_SHA}"
     end
   end
 
   on_linux do
     on_intel do
       resource "widget" do
-        url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.1.0/ClaudeNavi-linux-x86_64.AppImage.tar.gz"
-        sha256 "PLACEHOLDER"
+        url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v${VERSION}/ClaudeNavi-linux-x86_64.AppImage.tar.gz"
+        sha256 "${LINUX_SHA}"
       end
     end
   end
