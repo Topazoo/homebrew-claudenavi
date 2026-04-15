@@ -21,6 +21,24 @@ Works on **macOS** and **Linux (x86_64)**. ARM64 Linux works for CLI + daemon; t
 
 No API keys needed — the daemon spawns `claude -p` subprocesses and reuses your existing Claude Code OAuth session.
 
+### Install directly from GitHub (without tapping)
+
+If you'd rather not add the tap, you can install the formula directly:
+
+```bash
+# One-shot install from the raw formula URL
+brew install --formula https://raw.githubusercontent.com/Topazoo/homebrew-claudenavi/main/Formula/claudenavi.rb
+```
+
+Or clone this repo and install from a local path:
+
+```bash
+git clone https://github.com/Topazoo/homebrew-claudenavi.git
+brew install --formula ./homebrew-claudenavi/Formula/claudenavi.rb
+```
+
+Trade-off: direct install works, but `brew upgrade claudenavi` won't find new versions automatically. Tapping is recommended for normal use.
+
 ---
 
 ## What it does
@@ -33,26 +51,13 @@ The widget is a Tauri v2 desktop app styled as a MegaMan Battle Network "PET" de
 
 ## Screenshots
 
-<table>
-  <tr>
-    <td><img src="images/state-idle.png" alt="Idle" width="280"><br><i>Idle — resting between tool calls</i></td>
-    <td><img src="images/state-jack-in.png" alt="Jack In" width="280"><br><i>Jack-in — session start</i></td>
-  </tr>
-  <tr>
-    <td><img src="images/state-battle.png" alt="Battle Stance" width="280"><br><i>Battle stance — virus detected</i></td>
-    <td><img src="images/state-victory.png" alt="Victory" width="280"><br><i>Victory — virus defeated</i></td>
-  </tr>
-</table>
-
-<p align="center">
-  <img src="images/battle.png" alt="Battle in progress with combo counter" width="360">
-  <br><i>Battle peak — combo counter, combat readout, HP bar</i>
-</p>
+The PET widget shows your Navi's current sprite, dialogue, activity feed, HP, stats, and Battle Chips. The sprite panel changes state in real time as you code.
 
 <table>
   <tr>
-    <td><img src="images/levelup.png" alt="Level up" width="280"><br><i>Level-up moment</i></td>
-    <td><img src="images/low-hp.png" alt="Low HP" width="280"><br><i>Low HP — stressed state</i></td>
+    <td align="center"><img src="images/hero.png" alt="Idle" width="280"><br><i>Idle — resting between tool calls</i></td>
+    <td align="center"><img src="images/state-jack-in.png" alt="Jack In" width="280"><br><i>Jack-in — session start, thrusters firing</i></td>
+    <td align="center"><img src="images/state-attack.png" alt="Attack Slash" width="280"><br><i>Attack slash — in combat with a virus</i></td>
   </tr>
 </table>
 
