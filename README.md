@@ -74,6 +74,8 @@ Each Navi animates across **10 states × 6 frames** — idle, battle stance, att
 
 The widget's home screen is a tabbed deck: **Activity** (recent tool events + dialogue), **Mission** (current focus + chip drops), **Chips** (your 4-chip loadout + cooldowns), **Chat** (typed conversation with your Navi).
 
+A **multi-agent panel** surfaces up to 5 active Claude Code + Codex CLI sessions — status, last tool, project name, age — so you can spot a `Permit?` prompt waiting across many concurrent agents from one widget.
+
 Right-clicking the device opens a context menu (Switch Navi / Diagnostics / Refresh state). **Diagnostics** mode flips the PET into a live observability surface — vitals, ops, memory pressure, sensor readouts — without leaving the widget.
 
 <p align="center">
