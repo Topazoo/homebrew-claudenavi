@@ -1,24 +1,24 @@
 class Claudenavi < Formula
   desc "MegaMan Battle Network-inspired NetNavi companion for Claude Code"
   homepage "https://github.com/Topazoo/claudenavi"
-  url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.4/claudenavi-daemon-universal-apple-darwin.tar.gz"
-  sha256 "7a9b38f11f3d995ccbdbfcf278c7418f2219ae6c9ed57622e4fd07344cf2b70f"
-  version "0.2.4"
+  url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.5/claudenavi-daemon-universal-apple-darwin.tar.gz"
+  sha256 "45fef2abb36b171e93b9b2fde03ad852c3da5f81933d989867ab0cfc99a57f53"
+  version "0.2.5"
   license "MIT"
 
   depends_on "node@22"
 
   on_macos do
     resource "widget" do
-      url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.4/ClaudeNavi-macos-universal.app.tar.gz"
-      sha256 "d840dcccca714277470d82c74241f423b4e717f91f5ee846c04fccee5d0d9c0b"
+      url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.5/ClaudeNavi-macos-universal.app.tar.gz"
+      sha256 "100f4d0a912cac622eaccd5b5621f52551aabbdf9c92b9446624dc90f609dd5a"
     end
   end
 
   on_linux do
     on_intel do
       resource "widget" do
-        url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.4/ClaudeNavi-linux-x86_64.AppImage.tar.gz"
+        url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.5/ClaudeNavi-linux-x86_64.AppImage.tar.gz"
         sha256 "f94cc8acc0504d063ac36b2f3742dd7164c1907e19ff657bc1ea3eb9dcc3a1a1"
       end
     end
