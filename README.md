@@ -102,7 +102,7 @@ Battle Chips drop on milestones (PR merged, test suite green after fixes, etc.).
 
 ClaudeNavi runs as a background daemon that hooks into Claude Code. Every tool call (Read, Edit, Bash, etc.) fires the hook in ~100ms; the daemon reacts: sprite animations shift, mood changes, dialogue gets generated, viruses spawn, chips drop. Your Navi has its own personality, remembers sessions, and reacts to what you're actually doing — error streaks spawn viruses to battle, milestones unlock chips you can cast, late-night grinding changes its mood.
 
-The widget is a Tauri v2 desktop app connecting to the daemon over WebSocket and rendering in real time.
+The widget is a Tauri v2 desktop app connecting to the daemon over an authenticated localhost WebSocket and rendering in real time. The auth token lives at `~/.claudenavi/ws-port` (chmod 600) so other local processes can't snoop on your Navi.
 
 ---
 
