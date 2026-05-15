@@ -72,16 +72,18 @@ Each Navi animates across **10 states × 6 frames** — idle, battle stance, att
 
 ## The PET — tabbed home + diagnostics
 
-The widget's home screen is a tabbed deck: **Activity** (recent tool events + dialogue), **Mission** (current focus + chip drops), **Chips** (your 4-chip loadout + cooldowns), **Chat** (typed conversation with your Navi).
+The widget's home screen is a tabbed deck with five sections: **Activity** (recent tool events + dialogue), **Mission** (current focus + chip drops), **Chips** (your 4-chip loadout + cooldowns), **Agents** (multi-agent observability), **Chat** (typed conversation with your Navi).
 
-A **multi-agent panel** surfaces up to 5 active Claude Code + Codex CLI sessions — status, last tool, project name, age — so you can spot a `Permit?` prompt waiting across many concurrent agents from one widget.
+The **Agents** tab surfaces up to 5 active Claude Code + Codex CLI sessions — status, last tool, project name, age — so you can spot a `Permit?` prompt waiting across many concurrent agents from one widget.
 
-Right-clicking the device opens a context menu (Switch Navi / Diagnostics / Refresh state). **Diagnostics** mode flips the PET into a live observability surface — vitals, ops, memory pressure, sensor readouts — without leaving the widget.
+Right-clicking the device opens a context menu (Switch Navi / **Pop Out** / Diagnostics / Refresh state). **Diagnostics** mode flips the PET into a live observability surface — vitals, ops, memory pressure, sensor readouts — without leaving the widget. **Pop Out** shrinks to a tiny mini-mode (just the Navi + speech bubble) for when you want it on-screen but out of the way.
 
 <p align="center">
-  <img src="images/widget-chips.png"        width="200" alt="Chip loadout view">
-  <img src="images/widget-right-click.png"  width="200" alt="Right-click context menu">
-  <img src="images/widget-diagnostics.png"  width="200" alt="Diagnostics mode">
+  <img src="images/widget-chips.png"        width="160" alt="Chip loadout view">
+  <img src="images/widget-tab-agents.png"   width="160" alt="Multi-agent panel">
+  <img src="images/widget-popout.png"       width="160" alt="Pop-out mini mode">
+  <img src="images/widget-right-click.png"  width="160" alt="Right-click context menu">
+  <img src="images/widget-diagnostics.png"  width="160" alt="Diagnostics mode">
 </p>
 
 ---
