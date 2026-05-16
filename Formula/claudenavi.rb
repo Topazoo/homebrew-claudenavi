@@ -2,45 +2,49 @@ class Claudenavi < Formula
   desc "MegaMan Battle Network-inspired NetNavi companion for Claude Code"
   homepage "https://github.com/Topazoo/claudenavi"
   url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.10/claudenavi-daemon-universal-apple-darwin.tar.gz"
-  sha256 "242dff5796e0d9e31f2f3445197b90f8dd8518d6bf92187601d103b9110e1b95"
+  sha256 "25004bd65c70ff331bc8401c16ff44d052d5ccba1f66a6d2ef0e07aba92cc581"
   version "0.2.10"
   license "MIT"
 
   depends_on "node@22"
 
-  on_macos do
-    resource "widget" do
-      url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.10/ClaudeNavi-macos-universal.app.tar.gz"
-      sha256 "20f807f7a1623c509b0e901b3a236119fdbfbd51fca8ae6caf7f8369701d89ea"
-    end
-  end
-
   on_linux do
+    depends_on "python@3.13" => :build # node-gyp fallback for better-sqlite3
+
     on_intel do
       resource "widget" do
         url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.10/ClaudeNavi-linux-x86_64.AppImage.tar.gz"
-        sha256 "f94cc8acc0504d063ac36b2f3742dd7164c1907e19ff657bc1ea3eb9dcc3a1a1"
+        sha256 "bffd5f3ce2eff7fae8fbcae5251f9ea008565291dc448c5e8e5cd03f303fccd8"
       end
     end
   end
 
+  on_macos do
+    resource "widget" do
+      url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.10/ClaudeNavi-macos-universal.app.tar.gz"
+      sha256 "bd902bac61b0a0352b0e9c9f416754ae043112215a5ccf4ec34bebdeb1dfd10c"
+    end
+  end
+
   def install
-    # The daemon-bundle tarball is already an installed npm package: it ships
-    # dist/, node_modules/ (production-only), and package.json — with a
-    # universal better_sqlite3.node baked in. So `brew install` is now just
-    # tarball extraction: no node-gyp, no python build dep, no per-machine
-    # rebuild of native modules.
-    target = libexec/"lib/node_modules/claudenavi"
-    target.mkpath
-    target.install Dir["*"]
+    pkg = libexec/"lib/node_modules/claudenavi"
+    pkg.install Dir["*"]
+    pkg.install ".claude" if File.directory?(".claude")
 
     # Explicit wrapper pinned to Homebrew's node — avoids #!/usr/bin/env node
     # resolving to nvm/system node with a different ABI (segfaults native modules)
     node = Formula["node@22"].opt_bin/"node"
     (bin/"claudenavi").write <<~EOS
       #!/bin/bash
-      exec "#{node}" "#{target}/dist/index.js" "$@"
+      exec "#{node}" "#{libexec}/lib/node_modules/claudenavi/dist/index.js" "$@"
     EOS
+    (bin/"claudenavi").chmod 0755
+
+    # The daemon bundle ships a universal macOS better-sqlite3 binding. On
+    # Linux, rebuild the native module for Homebrew's node@22 in-place.
+    if OS.linux?
+      system "npm", "rebuild", "better-sqlite3", "--prefix", pkg
+    end
 
     # Widget: extract pre-built binary into libexec for post_install to copy
     if OS.mac?
@@ -131,7 +135,7 @@ class Claudenavi < Formula
 
   test do
     assert_match version.to_s, shell_output("#{bin}/claudenavi --version")
-    # Verify the bundled universal SQLite module loads correctly
+    # Verify the native SQLite module loads correctly
     node = Formula["node@22"].opt_bin/"node"
     system node, "-e",
       "require('#{libexec}/lib/node_modules/claudenavi/node_modules/better-sqlite3')"
