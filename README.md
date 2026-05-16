@@ -188,7 +188,10 @@ After `brew install`, `claudenavi` is on your PATH:
 - **macOS** (primary) or **Linux** (x86_64 for full widget; ARM64 for CLI + daemon only)
 - **[Claude Code](https://claude.com/claude-code)** installed and signed in — the daemon spawns `claude -p` subprocesses
 - **Node 22+** — auto-installed by Homebrew as a formula dependency
-- **Linux only**: `libfuse2` is required for the AppImage widget. On Debian/Ubuntu: `sudo apt install libfuse2`. Or run with `ClaudeNavi.AppImage --appimage-extract-and-run`
+- **Linux** (x86_64 widget): requires `webkit2gtk-4.1` and `libfuse2` from your distro — the AppImage is built lean and uses the host's graphics stack (avoids `EGL_BAD_PARAMETER` from bundled-Mesa version skew on Arch / Fedora rawhide).
+  - Debian / Ubuntu 24.04+: `sudo apt install webkit2gtk-4.1 libfuse2`
+  - Fedora 39+: `sudo dnf install webkit2gtk4.1 fuse-libs`
+  - Arch / Manjaro: `sudo pacman -S webkit2gtk-4.1 fuse2`
 
 No Python build dependency: starting with v0.2.2, the formula installs a pre-built daemon bundle with a universal `better-sqlite3` baked in. No `node-gyp` rebuild on your machine.
 
@@ -219,7 +222,8 @@ Run `claudenavi doctor` first — it surfaces most common issues in one place.
 | "Another daemon is already running" | Pidfile guard caught a race | `claudenavi daemon status` then `restart` |
 | DB looks corrupt | Auto-backup is at `~/.claudenavi/navi.db.bak` | `cp ~/.claudenavi/navi.db.bak ~/.claudenavi/navi.db && claudenavi daemon restart` |
 | Need a clean slate | | `claudenavi uninstall --all && brew install claudenavi` |
-| AppImage won't launch on Linux | Missing libfuse2 | `sudo apt install libfuse2` |
+| AppImage won't launch on Linux | Missing libfuse2 | `sudo apt install libfuse2` (Debian/Ubuntu), `sudo pacman -S fuse2` (Arch), `sudo dnf install fuse-libs` (Fedora) |
+| Widget crashes on launch with `EGL_BAD_PARAMETER` | Missing host webkit2gtk-4.1 | `sudo apt install webkit2gtk-4.1` (Debian/Ubuntu), `sudo pacman -S webkit2gtk-4.1` (Arch), `sudo dnf install webkit2gtk4.1` (Fedora) |
 
 ---
 
