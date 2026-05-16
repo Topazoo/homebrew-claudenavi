@@ -188,10 +188,12 @@ After `brew install`, `claudenavi` is on your PATH:
 - **macOS** (primary) or **Linux** (x86_64 for full widget; ARM64 for CLI + daemon only)
 - **[Claude Code](https://claude.com/claude-code)** installed and signed in — the daemon spawns `claude -p` subprocesses
 - **Node 22+** — auto-installed by Homebrew as a formula dependency
-- **Linux** (x86_64 widget): requires `webkit2gtk-4.1` and `libfuse2` from your distro — the AppImage is built lean and uses the host's graphics stack (avoids `EGL_BAD_PARAMETER` from bundled-Mesa version skew on Arch / Fedora rawhide).
-  - Debian / Ubuntu 24.04+: `sudo apt install webkit2gtk-4.1 libfuse2`
-  - Fedora 39+: `sudo dnf install webkit2gtk4.1 fuse-libs`
-  - Arch / Manjaro: `sudo pacman -S webkit2gtk-4.1 fuse2`
+- **Linux** (x86_64 widget): requires `libfuse2` from your distro. Three AppImages ship per release — pick the one matching your distro family because the bundled WebKitGTK has to match the host Mesa era:
+  - **Default** (`brew install` fetches this) — for Ubuntu 24.04+, Debian 13+, Mint, Pop!_OS (Mesa ≤ 25)
+  - **`-arch` variant** — for Arch, Manjaro, EndeavourOS (Mesa 26+)
+  - **`-fedora` variant** — for Fedora 40+, RHEL 10+, openSUSE (Mesa 25, GNOME-aligned)
+  - Distros: `sudo apt install libfuse2` / `sudo dnf install fuse-libs` / `sudo pacman -S fuse2`
+  - If brew installs the default AppImage and you hit `EGL_BAD_PARAMETER` on launch, your distro doesn't match the default Ubuntu build — see the **Troubleshooting** section below for switching to the `-arch` or `-fedora` build.
 
 No Python build dependency: starting with v0.2.2, the formula installs a pre-built daemon bundle with a universal `better-sqlite3` baked in. No `node-gyp` rebuild on your machine.
 
@@ -223,7 +225,23 @@ Run `claudenavi doctor` first — it surfaces most common issues in one place.
 | DB looks corrupt | Auto-backup is at `~/.claudenavi/navi.db.bak` | `cp ~/.claudenavi/navi.db.bak ~/.claudenavi/navi.db && claudenavi daemon restart` |
 | Need a clean slate | | `claudenavi uninstall --all && brew install claudenavi` |
 | AppImage won't launch on Linux | Missing libfuse2 | `sudo apt install libfuse2` (Debian/Ubuntu), `sudo pacman -S fuse2` (Arch), `sudo dnf install fuse-libs` (Fedora) |
-| Widget crashes on launch with `EGL_BAD_PARAMETER` | Missing host webkit2gtk-4.1 | `sudo apt install webkit2gtk-4.1` (Debian/Ubuntu), `sudo pacman -S webkit2gtk-4.1` (Arch), `sudo dnf install webkit2gtk4.1` (Fedora) |
+| Widget crashes on launch with `EGL_BAD_PARAMETER` (Linux) | Bundled WebKitGTK doesn't match host Mesa | Replace `~/.local/bin/ClaudeNavi.AppImage` with the distro-specific build — see below |
+
+### Switching to a distro-specific Linux AppImage
+
+The default brew install fetches the Ubuntu-built AppImage. On Arch / Fedora / openSUSE, swap it for the matching variant:
+
+```bash
+# Arch / Manjaro / EndeavourOS
+curl -fsSL https://github.com/Topazoo/homebrew-claudenavi/releases/latest/download/ClaudeNavi-linux-x86_64-arch.AppImage.tar.gz \
+  | tar xz -C ~/.local/bin/
+chmod +x ~/.local/bin/ClaudeNavi*.AppImage
+
+# Fedora / RHEL / openSUSE
+curl -fsSL https://github.com/Topazoo/homebrew-claudenavi/releases/latest/download/ClaudeNavi-linux-x86_64-fedora.AppImage.tar.gz \
+  | tar xz -C ~/.local/bin/
+chmod +x ~/.local/bin/ClaudeNavi*.AppImage
+```
 
 ---
 

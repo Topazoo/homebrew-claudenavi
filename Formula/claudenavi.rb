@@ -102,7 +102,18 @@ class Claudenavi < Formula
       "    ~/.local/bin/ClaudeNavi.AppImage\n\n" \
       "    If you see \"error loading libfuse.so.2\":\n" \
       "      sudo apt install libfuse2     # Debian/Ubuntu\n" \
-      "      # or: ClaudeNavi.AppImage --appimage-extract-and-run"
+      "      # or: ClaudeNavi.AppImage --appimage-extract-and-run\n\n" \
+      "    If you see \"Could not create default EGL display: EGL_BAD_PARAMETER\":\n" \
+      "    the default AppImage is Ubuntu-built — your distro's Mesa is newer.\n" \
+      "    Swap in the distro-specific variant:\n\n" \
+      "      # Arch / Manjaro / EndeavourOS\n" \
+      "      curl -fsSL https://github.com/Topazoo/homebrew-claudenavi/releases/latest/download/ClaudeNavi-linux-x86_64-arch.AppImage.tar.gz \\\n" \
+      "        | tar xz -C ~/.local/bin/\n" \
+      "      chmod +x ~/.local/bin/ClaudeNavi*.AppImage\n\n" \
+      "      # Fedora / RHEL / openSUSE\n" \
+      "      curl -fsSL https://github.com/Topazoo/homebrew-claudenavi/releases/latest/download/ClaudeNavi-linux-x86_64-fedora.AppImage.tar.gz \\\n" \
+      "        | tar xz -C ~/.local/bin/\n" \
+      "      chmod +x ~/.local/bin/ClaudeNavi*.AppImage"
     else
       "  Desktop widget: not yet available on ARM64 Linux.\n" \
       "    The CLI and daemon work on all architectures."
