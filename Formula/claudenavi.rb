@@ -1,9 +1,9 @@
 class Claudenavi < Formula
   desc "MegaMan Battle Network-inspired NetNavi companion for Claude Code"
   homepage "https://github.com/Topazoo/claudenavi"
-  url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.11/claudenavi-daemon-universal-apple-darwin.tar.gz"
-  sha256 "a75c19217f0cb8de346f907b06ba65a0803cdd8777e649f1608f72f57275a9ca"
-  version "0.2.11"
+  url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.12/claudenavi-daemon-universal-apple-darwin.tar.gz"
+  sha256 "f0139cbcaf238466c1113bddd8f1cce6cadfad5e9489965e905529f1710808bb"
+  version "0.2.12"
   license "MIT"
 
   depends_on "node@22"
@@ -13,16 +13,16 @@ class Claudenavi < Formula
 
     on_intel do
       resource "widget" do
-        url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.11/ClaudeNavi-linux-x86_64.AppImage.tar.gz"
-        sha256 "f23e4e537c5ab62e353ed8398c4a0e7956f629ce0de8bf89aebba2d35c9377a7"
+        url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.12/ClaudeNavi-linux-x86_64.AppImage.tar.gz"
+        sha256 "badf05eb884c105db1d7eab9a39aa67bbcc64936302a58b9650b542aba4fdc60"
       end
     end
   end
 
   on_macos do
     resource "widget" do
-      url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.11/ClaudeNavi-macos-universal.app.tar.gz"
-      sha256 "d073978df6123e7b6e743f9da8084f25e4ba279a50649f008fbfbfd58fb63b99"
+      url "https://github.com/Topazoo/homebrew-claudenavi/releases/download/v0.2.12/ClaudeNavi-macos-universal.app.tar.gz"
+      sha256 "712f6a766d0877e02e41b914b91ed47feb6cebc74a5b2453082fb6e2652be3fe"
     end
   end
 
@@ -102,18 +102,7 @@ class Claudenavi < Formula
       "    ~/.local/bin/ClaudeNavi.AppImage\n\n" \
       "    If you see \"error loading libfuse.so.2\":\n" \
       "      sudo apt install libfuse2     # Debian/Ubuntu\n" \
-      "      # or: ClaudeNavi.AppImage --appimage-extract-and-run\n\n" \
-      "    If you see \"Could not create default EGL display: EGL_BAD_PARAMETER\":\n" \
-      "    the default AppImage is Ubuntu-built — your distro's Mesa is newer.\n" \
-      "    Swap in the distro-specific variant:\n\n" \
-      "      # Arch / Manjaro / EndeavourOS\n" \
-      "      curl -fsSL https://github.com/Topazoo/homebrew-claudenavi/releases/latest/download/ClaudeNavi-linux-x86_64-arch.AppImage.tar.gz \\\n" \
-      "        | tar xz -C ~/.local/bin/\n" \
-      "      chmod +x ~/.local/bin/ClaudeNavi*.AppImage\n\n" \
-      "      # Fedora / RHEL / openSUSE\n" \
-      "      curl -fsSL https://github.com/Topazoo/homebrew-claudenavi/releases/latest/download/ClaudeNavi-linux-x86_64-fedora.AppImage.tar.gz \\\n" \
-      "        | tar xz -C ~/.local/bin/\n" \
-      "      chmod +x ~/.local/bin/ClaudeNavi*.AppImage"
+      "      # or: ClaudeNavi.AppImage --appimage-extract-and-run"
     else
       "  Desktop widget: not yet available on ARM64 Linux.\n" \
       "    The CLI and daemon work on all architectures."
