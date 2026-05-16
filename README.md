@@ -144,7 +144,7 @@ Daemon ────────────────────────�
 └── SQLite (WAL) → ~/.claudenavi/navi.db         │
 ```
 
-Every hook runs in ~100ms. Dialogue is template-first (so the bubble appears instantly) with an async LLM upgrade that replaces the text in place ~4 seconds later. Data lives in `~/.claudenavi/navi.db` (SQLite, WAL mode, auto-backed-up daily via `VACUUM INTO`).
+Every hook runs in ~100ms. Dialogue is template-first (so the bubble appears instantly) with an async LLM upgrade that replaces the text in place ~4 seconds later. Each archetype has its own voice template set (Vex's terse military cadence, Pulse's encouragement, Glitch's fragmented speech), and a runtime quality gate rejects LLM upgrades that quote exact inventory numbers, name emotion axes, or use generic stamps — the grounded template stays on screen instead. Data lives in `~/.claudenavi/navi.db` (SQLite, WAL mode, auto-backed-up daily via `VACUUM INTO`).
 
 ---
 
@@ -158,6 +158,7 @@ After `brew install`, `claudenavi` is on your PATH:
 | `claudenavi status` | Daemon status + core Navi vitals (HP, level, mood) |
 | `claudenavi stats` | Detailed activity, files visited, operator profile |
 | `claudenavi chips` | Chip inventory, current loadout, cooldowns |
+| `claudenavi repair-events` | Audit + annotate false errors in raw_events (dry-run by default) |
 | `claudenavi logs` | Tail recent daemon log entries |
 | `claudenavi export <path>` | Snapshot `navi.db` (safe with live daemon) |
 | `claudenavi import <path>` | Restore from snapshot (auto safety copy first) |
